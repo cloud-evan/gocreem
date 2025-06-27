@@ -13,7 +13,7 @@
 ## 安装
 
 ```bash
-go get github.com/your-repo/creem
+go get github.com/cloud-evan/gocreem
 ```
 
 ## 快速开始
@@ -28,7 +28,7 @@ import (
     "fmt"
     "log"
     
-    "github.com/your-repo/creem"
+    "github.com/cloud-evan/gocreem"
 )
 
 func main() {

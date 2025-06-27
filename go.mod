@@ -1,4 +1,4 @@
-module github.com/gocreem
+module github.com/cloud-evan/gocreem
 
 go 1.23.0
 
