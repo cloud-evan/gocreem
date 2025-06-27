@@ -1,0 +1,6 @@
+github.com/go-pay/gopay v1.5.114 h1:jNYpcylr7WJev6i/MBeer0Z58E0x5NyqG4FfZrar3pQ=
+github.com/go-pay/gopay v1.5.114/go.mod h1:p48xvWeepPolZuakAjCeucWynWwW7msoXsqahcoJpKE=
+github.com/go-pay/util v0.0.4 h1:TuwSU9o3Qd7m9v1PbzFuIA/8uO9FJnA6P7neG/NwPyk=
+github.com/go-pay/util v0.0.4/go.mod h1:Tsdhs8Ib9J9b4+NKNO1PHh5hWHhlg98PthsX0ckq6PM=
+github.com/go-pay/xlog v0.0.3 h1:avyMhCL/JgBHreoGx/am/kHxfs1udDOAeVqbmzP/Yes=
+github.com/go-pay/xlog v0.0.3/go.mod h1:mH47xbobrdsSHWsmFtSF5agWbMHFP+tK0ZbVCk5OAEw=
