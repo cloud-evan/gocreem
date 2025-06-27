@@ -8,7 +8,7 @@ import (
 	"net/url"
 	"strconv"
 
-	"github.com/go-pay/gopay"
+	"github.com/cloud-evan/gocreem"
 )
 
 // ListTransactions 获取交易列表
@@ -52,9 +52,9 @@ func (c *Client) ListTransactions(ctx context.Context, params *ListParams) (rsp 
 		return nil, err
 	}
 
-	rsp = &TransactionsListResponse{BaseResponse: BaseResponse{Code: Success}}
+	rsp = &TransactionsListResponse{BaseResponse: BaseResponse{Code: gocreem.Success}}
 	if err = json.Unmarshal(bs, rsp); err != nil {
-		return nil, fmt.Errorf("[%w]: %v, bytes: %s", gopay.UnmarshalErr, err, string(bs))
+		return nil, fmt.Errorf("[%w]: %v, bytes: %s", gocreem.UnmarshalErr, err, string(bs))
 	}
 
 	if res.StatusCode != http.StatusOK {

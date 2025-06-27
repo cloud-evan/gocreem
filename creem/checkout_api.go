@@ -6,6 +6,8 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
+
+	"github.com/cloud-evan/gocreem"
 )
 
 // CreateCheckoutSession 创建结账会话
@@ -34,9 +36,9 @@ func (c *Client) CreateCheckoutSession(ctx context.Context, req *CheckoutSession
 		return nil, err
 	}
 
-	rsp = &CheckoutSessionResponse{BaseResponse: BaseResponse{Code: Success}}
+	rsp = &CheckoutSessionResponse{BaseResponse: BaseResponse{Code: gocreem.Success}}
 	if err = json.Unmarshal(bs, rsp); err != nil {
-		return nil, fmt.Errorf("[%w]: %v, bytes: %s", UnmarshalErr, err, string(bs))
+		return nil, fmt.Errorf("[%w]: %v, bytes: %s", gocreem.UnmarshalErr, err, string(bs))
 	}
 
 	if res.StatusCode != http.StatusCreated {
@@ -62,9 +64,9 @@ func (c *Client) GetCheckoutSession(ctx context.Context, sessionID string) (rsp 
 		return nil, err
 	}
 
-	rsp = &CheckoutSessionResponse{BaseResponse: BaseResponse{Code: Success}}
+	rsp = &CheckoutSessionResponse{BaseResponse: BaseResponse{Code: gocreem.Success}}
 	if err = json.Unmarshal(bs, rsp); err != nil {
-		return nil, fmt.Errorf("[%w]: %v, bytes: %s", UnmarshalErr, err, string(bs))
+		return nil, fmt.Errorf("[%w]: %v, bytes: %s", gocreem.UnmarshalErr, err, string(bs))
 	}
 
 	if res.StatusCode != http.StatusOK {

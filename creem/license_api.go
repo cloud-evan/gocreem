@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/go-pay/gopay"
+	"github.com/cloud-evan/gocreem"
 )
 
 // ValidateLicense 校验授权密钥
@@ -27,9 +27,9 @@ func (c *Client) ValidateLicense(ctx context.Context, req *LicenseValidateReques
 		return nil, err
 	}
 
-	rsp = &LicenseValidateResponse{BaseResponse: BaseResponse{Code: Success}}
+	rsp = &LicenseValidateResponse{BaseResponse: BaseResponse{Code: gocreem.Success}}
 	if err = json.Unmarshal(bs, rsp); err != nil {
-		return nil, fmt.Errorf("[%w]: %v, bytes: %s", gopay.UnmarshalErr, err, string(bs))
+		return nil, fmt.Errorf("[%w]: %v, bytes: %s", gocreem.UnmarshalErr, err, string(bs))
 	}
 
 	if res.StatusCode != http.StatusOK {
@@ -62,9 +62,9 @@ func (c *Client) ActivateLicense(ctx context.Context, req *LicenseActivateReques
 		return nil, err
 	}
 
-	rsp = &LicenseActivateResponse{BaseResponse: BaseResponse{Code: Success}}
+	rsp = &LicenseActivateResponse{BaseResponse: BaseResponse{Code: gocreem.Success}}
 	if err = json.Unmarshal(bs, rsp); err != nil {
-		return nil, fmt.Errorf("[%w]: %v, bytes: %s", gopay.UnmarshalErr, err, string(bs))
+		return nil, fmt.Errorf("[%w]: %v, bytes: %s", gocreem.UnmarshalErr, err, string(bs))
 	}
 
 	if res.StatusCode != http.StatusOK {
@@ -94,9 +94,9 @@ func (c *Client) DeactivateLicense(ctx context.Context, req *LicenseDeactivateRe
 		return nil, err
 	}
 
-	rsp = &LicenseDeactivateResponse{BaseResponse: BaseResponse{Code: Success}}
+	rsp = &LicenseDeactivateResponse{BaseResponse: BaseResponse{Code: gocreem.Success}}
 	if err = json.Unmarshal(bs, rsp); err != nil {
-		return nil, fmt.Errorf("[%w]: %v, bytes: %s", gopay.UnmarshalErr, err, string(bs))
+		return nil, fmt.Errorf("[%w]: %v, bytes: %s", gocreem.UnmarshalErr, err, string(bs))
 	}
 
 	if res.StatusCode != http.StatusOK {

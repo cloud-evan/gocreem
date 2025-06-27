@@ -1,15 +1,6 @@
 package creem
 
 const (
-	NULL = ""
-	// SUCCESS  = "SUCCESS"
-	// FAIL     = "FAIL"
-	// OK       = "OK"
-	DebugOff = 0
-	DebugOn  = 1
-	Version  = "v1.0.0"
-	Success  = 0
-
 	HeaderApiKey = "x-api-key"            // Creem API认证头
 	baseUrlProd  = "https://api.creem.io" // 正式 URL
 
@@ -127,5 +118,3 @@ const (
 	ProductTypeDigital   = "digital"
 	ProductTypePhysical  = "physical"
 )
-
-type DebugSwitch int8

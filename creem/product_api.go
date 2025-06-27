@@ -9,7 +9,7 @@ import (
 	"net/url"
 	"strconv"
 
-	"github.com/go-pay/gopay"
+	"github.com/cloud-evan/gocreem"
 )
 
 // CreateProduct 创建产品
@@ -41,9 +41,9 @@ func (c *Client) CreateProduct(ctx context.Context, req *ProductCreateRequest) (
 		return nil, err
 	}
 
-	rsp = &ProductCreateResponse{BaseResponse: BaseResponse{Code: Success}}
+	rsp = &ProductCreateResponse{BaseResponse: BaseResponse{Code: gocreem.Success}}
 	if err = json.Unmarshal(bs, rsp); err != nil {
-		return nil, fmt.Errorf("[%w]: %v, bytes: %s", gopay.UnmarshalErr, err, string(bs))
+		return nil, fmt.Errorf("[%w]: %v, bytes: %s", gocreem.UnmarshalErr, err, string(bs))
 	}
 
 	if res.StatusCode != http.StatusCreated {
@@ -69,9 +69,9 @@ func (c *Client) GetProduct(ctx context.Context, productID string) (rsp *Product
 		return nil, err
 	}
 
-	rsp = &ProductDetailResponse{BaseResponse: BaseResponse{Code: Success}}
+	rsp = &ProductDetailResponse{BaseResponse: BaseResponse{Code: gocreem.Success}}
 	if err = json.Unmarshal(bs, rsp); err != nil {
-		return nil, fmt.Errorf("[%w]: %v, bytes: %s", gopay.UnmarshalErr, err, string(bs))
+		return nil, fmt.Errorf("[%w]: %v, bytes: %s", gocreem.UnmarshalErr, err, string(bs))
 	}
 
 	if res.StatusCode != http.StatusOK {
@@ -113,9 +113,9 @@ func (c *Client) ListProducts(ctx context.Context, params *ListParams) (rsp *Pro
 		return nil, err
 	}
 
-	rsp = &ProductsListResponse{BaseResponse: BaseResponse{Code: Success}}
+	rsp = &ProductsListResponse{BaseResponse: BaseResponse{Code: gocreem.Success}}
 	if err = json.Unmarshal(bs, rsp); err != nil {
-		return nil, fmt.Errorf("[%w]: %v, bytes: %s", gopay.UnmarshalErr, err, string(bs))
+		return nil, fmt.Errorf("[%w]: %v, bytes: %s", gocreem.UnmarshalErr, err, string(bs))
 	}
 
 	if res.StatusCode != http.StatusOK {

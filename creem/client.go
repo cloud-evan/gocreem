@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/cloud-evan/gocreem"
 	"github.com/cloud-evan/gocreem/pkg/xhttp"
 	"github.com/go-pay/xlog"
 )
@@ -15,7 +16,7 @@ type Client struct {
 	ApiKey       string
 	SecretKey    string
 	IsProd       bool
-	DebugSwitch  DebugSwitch
+	DebugSwitch  gocreem.DebugSwitch
 	logger       xlog.XLogger
 	hc           *xhttp.Client
 	baseUrlProd  string
@@ -29,8 +30,8 @@ type Option func(*Client)
 // secretKey: 密钥
 // isProd: 是否是正式环境（Creem只有生产环境）
 func NewClient(apiKey, secretKey string, isProd bool, options ...Option) (client *Client, err error) {
-	if apiKey == NULL || secretKey == NULL {
-		return nil, MissParamErr
+	if apiKey == gocreem.NULL || secretKey == gocreem.NULL {
+		return nil, gocreem.MissParamErr
 	}
 
 	logger := xlog.NewLogger()
@@ -40,7 +41,7 @@ func NewClient(apiKey, secretKey string, isProd bool, options ...Option) (client
 		ApiKey:       apiKey,
 		SecretKey:    secretKey,
 		IsProd:       isProd,
-		DebugSwitch:  DebugOff,
+		DebugSwitch:  gocreem.DebugOff,
 		logger:       logger,
 		hc:           xhttp.NewClient(),
 		baseUrlProd:  baseUrlProd,
@@ -130,7 +131,7 @@ func (c *Client) doCreemGet(ctx context.Context, path string) (res *http.Respons
 		req.Header.Set(k, v)
 	}
 
-	if c.DebugSwitch == DebugOn {
+	if c.DebugSwitch == gocreem.DebugOn {
 		c.logger.Debugf("Creem_Request: %s", url)
 	}
 
@@ -139,7 +140,7 @@ func (c *Client) doCreemGet(ctx context.Context, path string) (res *http.Respons
 		return nil, nil, fmt.Errorf("http.Do Error: %w", err)
 	}
 
-	if c.DebugSwitch == DebugOn {
+	if c.DebugSwitch == gocreem.DebugOn {
 		c.logger.Debugf("Creem_Response: %s", string(bs))
 	}
 
@@ -161,7 +162,7 @@ func (c *Client) doCreemPost(ctx context.Context, body interface{}, path string)
 		req.Header.Set(k, v)
 	}
 
-	if c.DebugSwitch == DebugOn {
+	if c.DebugSwitch == gocreem.DebugOn {
 		if body != nil {
 			bodyBytes, _ := json.Marshal(body)
 			c.logger.Debugf("Creem_Request: %s, Body: %s", url, string(bodyBytes))
@@ -180,7 +181,7 @@ func (c *Client) doCreemPost(ctx context.Context, body interface{}, path string)
 		return nil, nil, fmt.Errorf("http.Do Error: %w", err)
 	}
 
-	if c.DebugSwitch == DebugOn {
+	if c.DebugSwitch == gocreem.DebugOn {
 		c.logger.Debugf("Creem_Response: %s", string(bs))
 	}
 
@@ -202,7 +203,7 @@ func (c *Client) doCreemPut(ctx context.Context, body interface{}, path string) 
 		req.Header.Set(k, v)
 	}
 
-	if c.DebugSwitch == DebugOn {
+	if c.DebugSwitch == gocreem.DebugOn {
 		if body != nil {
 			bodyBytes, _ := json.Marshal(body)
 			c.logger.Debugf("Creem_Request: %s, Body: %s", url, string(bodyBytes))
@@ -221,7 +222,7 @@ func (c *Client) doCreemPut(ctx context.Context, body interface{}, path string) 
 		return nil, nil, fmt.Errorf("http.Do Error: %w", err)
 	}
 
-	if c.DebugSwitch == DebugOn {
+	if c.DebugSwitch == gocreem.DebugOn {
 		c.logger.Debugf("Creem_Response: %s", string(bs))
 	}
 
@@ -243,7 +244,7 @@ func (c *Client) doCreemDelete(ctx context.Context, path string) (res *http.Resp
 		req.Header.Set(k, v)
 	}
 
-	if c.DebugSwitch == DebugOn {
+	if c.DebugSwitch == gocreem.DebugOn {
 		c.logger.Debugf("Creem_Request: %s", url)
 	}
 
@@ -252,7 +253,7 @@ func (c *Client) doCreemDelete(ctx context.Context, path string) (res *http.Resp
 		return nil, nil, fmt.Errorf("http.Do Error: %w", err)
 	}
 
-	if c.DebugSwitch == DebugOn {
+	if c.DebugSwitch == gocreem.DebugOn {
 		c.logger.Debugf("Creem_Response: %s", string(bs))
 	}
 

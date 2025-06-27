@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/go-pay/gopay"
+	"github.com/cloud-evan/gocreem"
 )
 
 // CreateDiscountCode 创建优惠码
@@ -33,9 +33,9 @@ func (c *Client) CreateDiscountCode(ctx context.Context, req *DiscountCodeCreate
 		return nil, err
 	}
 
-	rsp = &DiscountCodeCreateResponse{BaseResponse: BaseResponse{Code: Success}}
+	rsp = &DiscountCodeCreateResponse{BaseResponse: BaseResponse{Code: gocreem.Success}}
 	if err = json.Unmarshal(bs, rsp); err != nil {
-		return nil, fmt.Errorf("[%w]: %v, bytes: %s", gopay.UnmarshalErr, err, string(bs))
+		return nil, fmt.Errorf("[%w]: %v, bytes: %s", gocreem.UnmarshalErr, err, string(bs))
 	}
 
 	if res.StatusCode != http.StatusCreated {
@@ -61,9 +61,9 @@ func (c *Client) GetDiscountCode(ctx context.Context, discountCodeID string) (rs
 		return nil, err
 	}
 
-	rsp = &DiscountCodeDetailResponse{BaseResponse: BaseResponse{Code: Success}}
+	rsp = &DiscountCodeDetailResponse{BaseResponse: BaseResponse{Code: gocreem.Success}}
 	if err = json.Unmarshal(bs, rsp); err != nil {
-		return nil, fmt.Errorf("[%w]: %v, bytes: %s", gopay.UnmarshalErr, err, string(bs))
+		return nil, fmt.Errorf("[%w]: %v, bytes: %s", gocreem.UnmarshalErr, err, string(bs))
 	}
 
 	if res.StatusCode != http.StatusOK {
@@ -89,7 +89,7 @@ func (c *Client) DeleteDiscountCode(ctx context.Context, discountCodeID string) 
 		return nil, err
 	}
 
-	rsp = &BaseResponse{Code: Success}
+	rsp = &BaseResponse{Code: gocreem.Success}
 	if res.StatusCode != http.StatusNoContent {
 		rsp.Code = res.StatusCode
 		rsp.Error = string(bs)

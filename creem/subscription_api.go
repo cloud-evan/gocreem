@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/go-pay/gopay"
+	"github.com/cloud-evan/gocreem"
 )
 
 // GetSubscription 获取订阅详情
@@ -23,9 +23,9 @@ func (c *Client) GetSubscription(ctx context.Context, subscriptionID string) (rs
 		return nil, err
 	}
 
-	rsp = &SubscriptionDetailResponse{BaseResponse: BaseResponse{Code: Success}}
+	rsp = &SubscriptionDetailResponse{BaseResponse: BaseResponse{Code: gocreem.Success}}
 	if err = json.Unmarshal(bs, rsp); err != nil {
-		return nil, fmt.Errorf("[%w]: %v, bytes: %s", gopay.UnmarshalErr, err, string(bs))
+		return nil, fmt.Errorf("[%w]: %v, bytes: %s", gocreem.UnmarshalErr, err, string(bs))
 	}
 
 	if res.StatusCode != http.StatusOK {
@@ -54,9 +54,9 @@ func (c *Client) UpdateSubscription(ctx context.Context, subscriptionID string, 
 		return nil, err
 	}
 
-	rsp = &SubscriptionUpdateResponse{BaseResponse: BaseResponse{Code: Success}}
+	rsp = &SubscriptionUpdateResponse{BaseResponse: BaseResponse{Code: gocreem.Success}}
 	if err = json.Unmarshal(bs, rsp); err != nil {
-		return nil, fmt.Errorf("[%w]: %v, bytes: %s", gopay.UnmarshalErr, err, string(bs))
+		return nil, fmt.Errorf("[%w]: %v, bytes: %s", gocreem.UnmarshalErr, err, string(bs))
 	}
 
 	if res.StatusCode != http.StatusOK {
@@ -90,9 +90,9 @@ func (c *Client) UpgradeSubscription(ctx context.Context, subscriptionID string,
 		return nil, err
 	}
 
-	rsp = &SubscriptionUpgradeResponse{BaseResponse: BaseResponse{Code: Success}}
+	rsp = &SubscriptionUpgradeResponse{BaseResponse: BaseResponse{Code: gocreem.Success}}
 	if err = json.Unmarshal(bs, rsp); err != nil {
-		return nil, fmt.Errorf("[%w]: %v, bytes: %s", gopay.UnmarshalErr, err, string(bs))
+		return nil, fmt.Errorf("[%w]: %v, bytes: %s", gocreem.UnmarshalErr, err, string(bs))
 	}
 
 	if res.StatusCode != http.StatusOK {
@@ -118,9 +118,9 @@ func (c *Client) CancelSubscription(ctx context.Context, subscriptionID string) 
 		return nil, err
 	}
 
-	rsp = &SubscriptionCancelResponse{BaseResponse: BaseResponse{Code: Success}}
+	rsp = &SubscriptionCancelResponse{BaseResponse: BaseResponse{Code: gocreem.Success}}
 	if err = json.Unmarshal(bs, rsp); err != nil {
-		return nil, fmt.Errorf("[%w]: %v, bytes: %s", gopay.UnmarshalErr, err, string(bs))
+		return nil, fmt.Errorf("[%w]: %v, bytes: %s", gocreem.UnmarshalErr, err, string(bs))
 	}
 
 	if res.StatusCode != http.StatusOK {

@@ -9,7 +9,7 @@ import (
 	"net/url"
 	"strconv"
 
-	"github.com/go-pay/gopay"
+	"github.com/cloud-evan/gocreem"
 )
 
 // CustomersList 获取客户列表
@@ -41,9 +41,9 @@ func (c *Client) CustomersList(ctx context.Context, params *ListParams) (rsp *Cu
 		return nil, err
 	}
 
-	rsp = &CustomersListResponse{BaseResponse: BaseResponse{Code: Success}}
+	rsp = &CustomersListResponse{BaseResponse: BaseResponse{Code: gocreem.Success}}
 	if err = json.Unmarshal(bs, rsp); err != nil {
-		return nil, fmt.Errorf("[%w]: %v, bytes: %s", gopay.UnmarshalErr, err, string(bs))
+		return nil, fmt.Errorf("[%w]: %v, bytes: %s", gocreem.UnmarshalErr, err, string(bs))
 	}
 
 	if res.StatusCode != http.StatusOK {
@@ -69,9 +69,9 @@ func (c *Client) GetCustomer(ctx context.Context, customerID string) (rsp *Custo
 		return nil, err
 	}
 
-	rsp = &CustomerDetailResponse{BaseResponse: BaseResponse{Code: Success}}
+	rsp = &CustomerDetailResponse{BaseResponse: BaseResponse{Code: gocreem.Success}}
 	if err = json.Unmarshal(bs, rsp); err != nil {
-		return nil, fmt.Errorf("[%w]: %v, bytes: %s", gopay.UnmarshalErr, err, string(bs))
+		return nil, fmt.Errorf("[%w]: %v, bytes: %s", gocreem.UnmarshalErr, err, string(bs))
 	}
 
 	if res.StatusCode != http.StatusOK {
@@ -104,9 +104,9 @@ func (c *Client) CustomerCreate(ctx context.Context, req *CustomerCreateRequest)
 		return nil, err
 	}
 
-	rsp = &CustomerCreateResponse{BaseResponse: BaseResponse{Code: Success}}
+	rsp = &CustomerCreateResponse{BaseResponse: BaseResponse{Code: gocreem.Success}}
 	if err = json.Unmarshal(bs, rsp); err != nil {
-		return nil, fmt.Errorf("[%w]: %v, bytes: %s", gopay.UnmarshalErr, err, string(bs))
+		return nil, fmt.Errorf("[%w]: %v, bytes: %s", gocreem.UnmarshalErr, err, string(bs))
 	}
 
 	if res.StatusCode != http.StatusCreated {
@@ -135,9 +135,9 @@ func (c *Client) CustomerUpdate(ctx context.Context, customerID string, req *Cus
 		return nil, err
 	}
 
-	rsp = &CustomerUpdateResponse{BaseResponse: BaseResponse{Code: Success}}
+	rsp = &CustomerUpdateResponse{BaseResponse: BaseResponse{Code: gocreem.Success}}
 	if err = json.Unmarshal(bs, rsp); err != nil {
-		return nil, fmt.Errorf("[%w]: %v, bytes: %s", gopay.UnmarshalErr, err, string(bs))
+		return nil, fmt.Errorf("[%w]: %v, bytes: %s", gocreem.UnmarshalErr, err, string(bs))
 	}
 
 	if res.StatusCode != http.StatusOK {
@@ -163,7 +163,7 @@ func (c *Client) CustomerDelete(ctx context.Context, customerID string) (rsp *Ba
 		return nil, err
 	}
 
-	rsp = &BaseResponse{Code: Success}
+	rsp = &BaseResponse{Code: gocreem.Success}
 	if res.StatusCode != http.StatusNoContent {
 		rsp.Code = res.StatusCode
 		rsp.Error = string(bs)
@@ -194,9 +194,9 @@ func (c *Client) CustomerPortalCreate(ctx context.Context, req *CustomerPortalCr
 		return nil, err
 	}
 
-	rsp = &CustomerPortalCreateResponse{BaseResponse: BaseResponse{Code: Success}}
+	rsp = &CustomerPortalCreateResponse{BaseResponse: BaseResponse{Code: gocreem.Success}}
 	if err = json.Unmarshal(bs, rsp); err != nil {
-		return nil, fmt.Errorf("[%w]: %v, bytes: %s", gopay.UnmarshalErr, err, string(bs))
+		return nil, fmt.Errorf("[%w]: %v, bytes: %s", gocreem.UnmarshalErr, err, string(bs))
 	}
 
 	if res.StatusCode != http.StatusCreated {
