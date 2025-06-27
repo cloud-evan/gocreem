@@ -6,8 +6,6 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
-
-	"github.com/gocreem/pkg/xhttp"
 )
 
 // CreateCheckoutSession 创建结账会话
@@ -38,7 +36,7 @@ func (c *Client) CreateCheckoutSession(ctx context.Context, req *CheckoutSession
 
 	rsp = &CheckoutSessionResponse{BaseResponse: BaseResponse{Code: Success}}
 	if err = json.Unmarshal(bs, rsp); err != nil {
-		return nil, fmt.Errorf("[%w]: %v, bytes: %s", xhttp.UnmarshalErr, err, string(bs))
+		return nil, fmt.Errorf("[%w]: %v, bytes: %s", UnmarshalErr, err, string(bs))
 	}
 
 	if res.StatusCode != http.StatusCreated {
@@ -66,7 +64,7 @@ func (c *Client) GetCheckoutSession(ctx context.Context, sessionID string) (rsp 
 
 	rsp = &CheckoutSessionResponse{BaseResponse: BaseResponse{Code: Success}}
 	if err = json.Unmarshal(bs, rsp); err != nil {
-		return nil, fmt.Errorf("[%w]: %v, bytes: %s", xhttp.UnmarshalErr, err, string(bs))
+		return nil, fmt.Errorf("[%w]: %v, bytes: %s", UnmarshalErr, err, string(bs))
 	}
 
 	if res.StatusCode != http.StatusOK {

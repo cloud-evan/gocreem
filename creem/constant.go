@@ -1,13 +1,17 @@
 package creem
 
-import "github.com/go-pay/gopay"
-
 const (
-	Success = 0
+	NULL = ""
+	// SUCCESS  = "SUCCESS"
+	// FAIL     = "FAIL"
+	// OK       = "OK"
+	DebugOff = 0
+	DebugOn  = 1
+	Version  = "v1.0.0"
+	Success  = 0
 
-	HeaderApiKey = "x-api-key" // Creem API认证头
-
-	baseUrlProd = "https://api.creem.io" // 正式 URL
+	HeaderApiKey = "x-api-key"            // Creem API认证头
+	baseUrlProd  = "https://api.creem.io" // 正式 URL
 
 	// Checkout相关
 	checkoutSessionCreate = "/v1/checkout-sessions"    // 创建结账会话 POST
@@ -124,11 +128,4 @@ const (
 	ProductTypePhysical  = "physical"
 )
 
-// DebugSwitch 调试开关类型
-type DebugSwitch = gopay.DebugSwitch
-
-// 调试开关常量
-const (
-	DebugOff = gopay.DebugOff
-	DebugOn  = gopay.DebugOn
-)
+type DebugSwitch int8

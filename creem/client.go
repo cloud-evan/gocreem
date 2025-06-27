@@ -6,9 +6,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/go-pay/gopay"
-	"github.com/gocreem/pkg/xhttp"
-	"github.com/gocreem/pkg/xlog"
+	"github.com/cloud-evan/gocreem/pkg/xhttp"
+	"github.com/go-pay/xlog"
 )
 
 // Client Creem支付客户端
@@ -30,8 +29,8 @@ type Option func(*Client)
 // secretKey: 密钥
 // isProd: 是否是正式环境（Creem只有生产环境）
 func NewClient(apiKey, secretKey string, isProd bool, options ...Option) (client *Client, err error) {
-	if apiKey == gopay.NULL || secretKey == gopay.NULL {
-		return nil, gopay.MissParamErr
+	if apiKey == NULL || secretKey == NULL {
+		return nil, MissParamErr
 	}
 
 	logger := xlog.NewLogger()
